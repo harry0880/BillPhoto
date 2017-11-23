@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+    android:id="@+id/et_invno"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Invoice Number"
+    android:imeOptions="actionUnspecified"
+    android:inputType="none"
+    android:maxLines="1"
+    android:singleLine="true" />
+
+    <EditText
+    android:id="@+id/et_doi"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Date of Invoice"
+    android:imeOptions="actionUnspecified"
+    android:inputType="none"
+    android:maxLines="1"
+    android:singleLine="true" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Library Name"
+        android:text="MaterialEditText"
+        android:textSize="34sp"
+        app:met_baseColor="@android:color/white"
+        app:met_floatingLabel="highlight"
+        app:met_maxCharacters="20"
+        app:met_primaryColor="?colorAccent"
+        app:met_singleLineEllipsis="true" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="50dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+
+
+</LinearLayout>
