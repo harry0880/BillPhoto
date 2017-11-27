@@ -34,13 +34,21 @@ public class List_BillInfo extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(List_BillInfo.this, Scnner_Activity.class));
+                startActivity(new Intent(List_BillInfo.this, Scnner_Activity.class).putExtra("ID","-1"));
             }
         });
 
         LinearLayoutManager llm = new LinearLayoutManager(this);
         lvItems.setLayoutManager(llm);
         lvItems.setHasFixedSize(true);
+
+        rv.setOnItemClickListener(new RVAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(String Id) {
+
+                startActivity(new Intent(List_BillInfo.this,Scnner_Activity.class).putExtra("ID",Id));
+            }
+        });
     }
 
     void InitializeAdapter()

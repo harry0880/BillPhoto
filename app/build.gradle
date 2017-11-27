@@ -5,7 +5,7 @@ android {
     buildToolsVersion '25.0.2'
     defaultConfig {
         applicationId "com.billphoto"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -36,6 +36,7 @@ dependencies {
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.wdullaer:materialdatetimepicker:2.3.0'
     compile 'com.github.medyo:fancybuttons:1.8.1'
+    compile 'com.jsibbold:zoomage:1.1.0'
     testCompile 'junit:junit:4.12'
     compile project(':scanlibrary')
 }

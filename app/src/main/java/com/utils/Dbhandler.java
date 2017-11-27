@@ -5,6 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+import android.util.Base64;
 
 import com.billphoto.CardGetSet;
 
@@ -64,5 +68,24 @@ public class Dbhandler extends SQLiteOpenHelper implements DbConstant{
         }
         db.close();
         return arr;
+    }
+
+    public  String getDatabaseField(String id)
+    {
+        SQLiteDatabase db=getReadableDatabase();
+        Cursor cr=db.rawQuery("select * from "+T_Tbl1+" where "+C_ID+"= "+id+";",null);
+        cr.moveToFirst();
+        String data=cr.getString(1)+"#"+cr.getString(2)+"#"+cr.getString(3);
+        return data;
+    }
+
+    public Bitmap getImgField(String id)
+    {
+        SQLiteDatabase db=getReadableDatabase();
+        Cursor cr=db.rawQuery("select * from "+T_snap+" where "+C_ID+"= "+id+";",null);
+        cr.moveToFirst();
+        byte[] arr= Base64.decode(cr.getString(1),Base64.DEFAULT);
+        Bitmap  decodedByte = BitmapFactory.decodeByteArray(arr, 0, arr.length);
+        return decodedByte;
     }
 }

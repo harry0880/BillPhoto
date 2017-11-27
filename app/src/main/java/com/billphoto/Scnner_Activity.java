@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.jsibbold.zoomage.ZoomageView;
 import com.scanlibrary.ScanActivity;
 import com.scanlibrary.ScanConstants;
 import com.utils.DbConstant;
@@ -45,15 +46,17 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class Scnner_Activity extends AppCompatActivity implements DbConstant, DatePickerDialog.OnDateChangedListener ,DatePickerDialog.OnDateSetListener{
     FancyButton btnPhoto;
     Button btnSave;
-    ImageView img;
+    ZoomageView img;
     EditText etInvoiceNo,etInvoiceDate,etInvoiceAmt;
     Dbhandler dbh;
     Bitmap processedBitmap;
-
+String id;
     private static final int REQUEST_CODE = 99;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle  bundle=getIntent().getExtras();
+        id=bundle.getString("ID");
         setContentView(R.layout.activity_data_insertion_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Bill Details");
@@ -61,7 +64,7 @@ public class Scnner_Activity extends AppCompatActivity implements DbConstant, Da
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         btnPhoto = (FancyButton) findViewById(R.id.btnPhoto);
         btnSave = (Button) findViewById(R.id.btnSave);
-        img=(ImageView) findViewById(R.id.Snap);
+        img=(ZoomageView) findViewById(R.id.Snap);
         etInvoiceNo=(EditText) findViewById(R.id.etInvoiceNo);
         etInvoiceDate=(EditText) findViewById(R.id.etInvoiceDate);
         etInvoiceAmt=(EditText) findViewById(R.id.etInvoiceAmt);
@@ -76,6 +79,19 @@ public class Scnner_Activity extends AppCompatActivity implements DbConstant, Da
             startScan(ScanConstants.OPEN_CAMERA);
             }
         });
+
+if(!(id.equals("-1")))
+{
+
+
+    String[] data=dbh.getDatabaseField(id).split("#");
+    etInvoiceNo.setText(data[0]);
+    etInvoiceDate.setText(data[1]);
+    etInvoiceAmt.setText(data[2]);
+    Bitmap imgbitmap=dbh.getImgField(id);
+    img.setImageBitmap(imgbitmap);
+
+}
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +116,8 @@ public class Scnner_Activity extends AppCompatActivity implements DbConstant, Da
 
             }
         });
+
+
 
         etInvoiceDate.setOnTouchListener(new View.OnTouchListener() {
             @Override
